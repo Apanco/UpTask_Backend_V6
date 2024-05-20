@@ -5,7 +5,7 @@ import Token from "../models/Token";
 import { generateToken } from "../utils/token";
 import { AuthEmail } from "../emails/AuthEmail";
 import { generateJWT } from "../utils/jwt";
-import Types from "mongoose";
+import {Types} from "mongoose";
 
 export class AuthController {
   static createAccount = async (request: Request, response: Response) => {
@@ -89,7 +89,7 @@ export class AuthController {
       }
       //. ->    Paso todas las verificaciones -> Generar JWT
       const id : Types.ObjectId = user._id//Types.Schema.Types.ObjectId
-      const token = generateJWT({id:id})
+      const token = generateJWT({id})
       response.send(token);
     }
     //# ->  Error generico
