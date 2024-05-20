@@ -5,8 +5,6 @@ import Token from "../models/Token";
 import { generateToken } from "../utils/token";
 import { AuthEmail } from "../emails/AuthEmail";
 import { generateJWT } from "../utils/jwt";
-import {Types} from "mongoose";
-
 export class AuthController {
   static createAccount = async (request: Request, response: Response) => {
     try {
@@ -88,7 +86,7 @@ export class AuthController {
         return response.status(401).json({ error: error.message });
       }
       //. ->    Paso todas las verificaciones -> Generar JWT
-      const id : Types.ObjectId = user._id//Types.Schema.Types.ObjectId
+      const id : string = user._id.toString()
       const token = generateJWT({id})
       response.send(token);
     }
